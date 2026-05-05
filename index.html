@@ -3,346 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="INVEST - Plataforma Premium de Investimento Digital. Segurança e elegância em cada transação.">
-    <meta name="theme-color" content="#0a0e27">
-    <title>INVEST - Plataforma Premium de Investimento Digital</title>
+    <meta name="description" content="Área de Depósito Seguro - Processamento Instantâneo via PIX">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Área de Depósito Seguro | Processamento Instantâneo</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts - Premium Typography -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --success: #10b981;
+            --bg-main: #f8fafc;
+        }
+
         * {
             font-family: 'Inter', sans-serif;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -0.02em;
+        h1, h2, h3, .font-lexend {
+            font-family: 'Lexend', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+            background-color: var(--bg-main);
+            color: #1e293b;
             min-height: 100vh;
         }
         
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .deposit-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
         }
         
-        .gold-accent {
-            background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .slide-in {
-            animation: slideIn 0.6s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .toast {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            padding: 16px 24px;
+        .input-field {
+            background: #f1f5f9;
+            border: 2px solid transparent;
             border-radius: 12px;
-            font-size: 14px;
+            padding: 12px 16px;
+            transition: all 0.2s ease;
+            width: 100%;
+            color: #0f172a;
             font-weight: 500;
-            z-index: 1000;
-            animation: slideInToast 0.4s ease-out;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 320px;
         }
         
-        @keyframes slideInToast {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .toast.success {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        
-        .toast.error {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        
-        .input-premium {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: #f0f0f0;
-            transition: all 0.3s ease;
-        }
-        
-        .input-premium::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-        
-        .input-premium:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(212, 175, 55, 0.6);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        .input-field:focus {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1);
             outline: none;
         }
-        
-        .btn-premium {
-            background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 100%);
-            color: #0a0e27;
+
+        .input-label {
+            display: block;
+            font-size: 0.875rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
         }
         
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        .btn-deposit {
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 12px;
+            width: 100%;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1.125rem;
         }
         
-        .btn-premium:disabled {
-            opacity: 0.5;
+        .btn-deposit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+        }
+
+        .btn-deposit:active {
+            transform: translateY(0);
+        }
+        
+        .btn-deposit:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
         
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #d4af37;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.6);
+        .qr-container {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 24px;
         }
 
-        .qr-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 12px;
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            background: white;
-            padding: 8px;
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: #f0fdf4;
+            color: #166534;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid #dcfce7;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
-    <div class="relative min-h-screen overflow-hidden">
-        <!-- Animated background elements -->
-        <div class="fixed inset-0 pointer-events-none">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
-            <div class="w-full max-w-6xl">
-                <!-- Hero Section -->
-                <div class="grid grid-cols-1 gap-8 mb-12 items-center">
-                    <!-- Form -->
-                    <div class="fade-in">
-                        <div class="mb-8">
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-3 leading-tight">INVEST</h1>
-                            <p class="text-base sm:text-lg lg:text-xl text-white/60 font-light">Plataforma Premium de Investimento Digital</p>
-                            <div class="w-16 h-1 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mt-4"></div>
-                        </div>
-
-                        <!-- Form Card -->
-                        <div class="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
-                            <!-- Amount Section -->
-                            <div class="mb-8">
-                                <label class="text-white/60 text-sm font-semibold uppercase tracking-widest block mb-4">Valor do Investimento</label>
-                                
-                                <div class="relative mb-6">
-                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg font-light">R$</span>
-                                    <input
-                                        id="amount"
-                                        type="number"
-                                        value="100"
-                                        min="1"
-                                        step="1"
-                                        oninput="updateAmount()"
-                                        class="input-premium w-full pl-12 pr-4 py-4 text-2xl font-bold rounded-lg"
-                                        placeholder="0,00"
-                                    />
-                                </div>
-
-                                <!-- Amount Display -->
-                                <div class="glass-effect rounded-lg p-6 text-center border border-yellow-500/20 mb-4">
-                                    <p class="text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Valor Total</p>
-                                    <p id="amountDisplay" class="gold-accent text-2xl sm:text-3xl lg:text-4xl font-bold">R$ 100,00</p>
-                                </div>
-
-                                <div id="amountError" class="hidden p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                                    <p class="text-red-400 text-sm font-medium" id="amountErrorMsg">Valor inválido</p>
-                                </div>
-                            </div>
-
-                            <!-- User Data Section -->
-                            <div class="mb-8 pt-8 border-t border-white/10">
-                                <label class="text-white/60 text-sm font-semibold uppercase tracking-widest block mb-4">Seus Dados</label>
-                                
-                                <div class="space-y-4">
-                                    <div>
-                                        <input
-                                            id="fullName"
-                                            type="text"
-                                            placeholder="Nome completo"
-                                            class="input-premium w-full px-4 py-3 rounded-lg text-white"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            placeholder="seu@email.com"
-                                            class="input-premium w-full px-4 py-3 rounded-lg text-white"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            id="whatsapp"
-                                            type="tel"
-                                            placeholder="(11) 99999-9999"
-                                            class="input-premium w-full px-4 py-3 rounded-lg text-white"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- PIX Section (shown after generation) -->
-                            <div id="pixSection" class="hidden mb-8 pt-8 border-t border-white/10">
-                                <div class="flex items-center gap-3 mb-6">
-                                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                    <p class="text-green-400 text-sm font-semibold uppercase tracking-wider">PIX Gerado com Sucesso</p>
-                                </div>
-
-                                <!-- QR Code -->
-                                <div id="qrCodeContainer" class="hidden mb-6 flex justify-center">
-                                    <img id="qrCode" src="" alt="QR Code PIX" class="qr-image mx-auto">
-                                </div>
-
-                                <!-- Pix Copy/Paste -->
-                                <div id="pixKeySection" class="hidden">
-                                    <p class="text-white/60 text-xs font-semibold uppercase tracking-wider mb-3">Código PIX Copia e Cola</p>
-                                    <div class="flex gap-2 mb-4">
-                                        <div class="flex-1 bg-white/5 border border-white/10 rounded-lg p-4 overflow-hidden">
-                                            <p id="pixKey" class="font-mono text-xs text-white/80 break-all leading-relaxed"></p>
-                                        </div>
-                                        <button
-                                            onclick="copyPixKey()"
-                                            class="px-4 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 text-yellow-400 rounded-lg transition-all flex-shrink-0"
-                                        >
-                                            Copiar
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Instructions -->
-                                <div class="bg-white/5 border border-white/10 rounded-lg p-4">
-                                    <p class="text-white/60 text-xs font-semibold uppercase tracking-wider mb-4">Como Pagar</p>
-                                    <ol class="space-y-3 text-sm text-white/70">
-                                        <li class="flex gap-3">
-                                            <span class="w-6 h-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</span>
-                                            <span>Abra seu aplicativo de banco</span>
-                                        </li>
-                                        <li class="flex gap-3">
-                                            <span class="w-6 h-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</span>
-                                            <span>Selecione a opção PIX</span>
-                                        </li>
-                                        <li class="flex gap-3">
-                                            <span class="w-6 h-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</span>
-                                            <span>Escaneie o QR Code ou cole o código PIX</span>
-                                        </li>
-                                        <li class="flex gap-3">
-                                            <span class="w-6 h-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">4</span>
-                                            <span>Confirme e conclua o pagamento</span>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-
-                            <!-- Loading -->
-                            <div id="loadingContainer" class="hidden mb-6 p-6 text-center">
-                                <div class="inline-block w-8 h-8 border-2 border-yellow-500/30 border-t-yellow-500 rounded-full animate-spin"></div>
-                                <p class="mt-3 text-sm text-white/60 font-light">Gerando seu PIX, aguarde...</p>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                                <button
-                                    id="generateBtn"
-                                    onclick="generatePix()"
-                                    class="btn-premium col-span-1 sm:col-span-2 py-4 px-6 rounded-lg uppercase tracking-wider text-sm"
-                                >
-                                    Gerar PIX
-                                </button>
-
-                                <button
-                                    onclick="resetForm()"
-                                    class="btn-secondary col-span-1 sm:col-span-2 py-4 px-6 rounded-lg uppercase tracking-wider text-sm"
-                                >
-                                    Limpar
-                                </button>
-                            </div>
-
-                            <!-- Security Badge -->
-                            <div class="text-center pt-6 border-t border-white/10">
-                                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg">
-                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                    <p class="text-xs text-white/60 font-light">Transação 100% segura e criptografada</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-sky-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-sky-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
                 </div>
-
-                <!-- Trust Section -->
-                <div class="grid grid-cols-3 gap-4 mt-16 pt-12 border-t border-white/10">
-                    <div class="text-center">
-                        <p class="text-2xl font-bold gold-accent mb-1">10K+</p>
-                        <p class="text-white/60 text-sm font-light">Investidores Ativos</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl font-bold gold-accent mb-1">R$ 500M+</p>
-                        <p class="text-white/60 text-sm font-light">Em Transações</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl font-bold gold-accent mb-1">24/7</p>
-                        <p class="text-white/60 text-sm font-light">Suporte Premium</p>
-                    </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-900 leading-none">Área de Depósito</h1>
+                    <p class="text-xs text-slate-500 font-medium mt-1">Processamento Seguro e Instantâneo</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-4">
+                <div class="security-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    SSL ENCRYPTED
                 </div>
             </div>
         </div>
-    </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Form -->
+            <div class="lg:col-span-7">
+                <div class="deposit-card p-6 sm:p-8">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2">Configurar Depósito</h2>
+                        <p class="text-slate-500">Preencha os dados abaixo para gerar seu código de pagamento.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Amount -->
+                        <div>
+                            <label class="input-label" for="amount">Valor do Depósito</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
+                                <input 
+                                    type="number" 
+                                    id="amount" 
+                                    class="input-field pl-12 text-2xl" 
+                                    placeholder="0,00" 
+                                    value="100"
+                                    oninput="updateDisplay()"
+                                >
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">O saldo será creditado instantaneamente após a confirmação.</p>
+                        </div>
+
+                        <!-- User Info -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="sm:col-span-2">
+                                <label class="input-label" for="fullName">Nome Completo</label>
+                                <input type="text" id="fullName" class="input-field" placeholder="Como no seu documento">
+                            </div>
+                            <div>
+                                <label class="input-label" for="email">E-mail</label>
+                                <input type="email" id="email" class="input-field" placeholder="seu@email.com">
+                            </div>
+                            <div>
+                                <label class="input-label" for="whatsapp">WhatsApp / Celular</label>
+                                <input type="tel" id="whatsapp" class="input-field" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button id="generateBtn" onclick="generatePix()" class="btn-deposit">
+                            <span>GERAR DEPÓSITO VIA PIX</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <!-- Loading State (Hidden) -->
+                        <div id="loadingState" class="hidden flex flex-col items-center justify-center py-4">
+                            <div class="spinner border-sky-600 border-t-sky-600 mb-3"></div>
+                            <p class="text-sm font-medium text-slate-600">Processando solicitação segura...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 text-sky-600 mb-2">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">Verificado</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 text-sky-600 mb-2">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.19 1.36l-7 3.11C3.47 4.79 3 5.51 3 6.3V11c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6.3c0-.79-.47-1.51-1.19-1.83l-7-3.11c-.51-.23-1.11-.23-1.62 0zM12 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">Protegido</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 text-sky-600 mb-2">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">Instantâneo</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 text-sky-600 mb-2">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 2.1L3 6.6V13c0 1.55.34 3.08.99 4.45.03.07.05.14.09.21.61 1.22 1.55 2.3 2.78 3.14L11.8 23l5.02-2.2c1.23-.84 2.17-1.92 2.78-3.14.04-.07.06-.14.09-.21.65-1.37.99-2.9.99-4.45V6.6l-8.8-4.5zM12 13c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">Privacidade</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Info & Result -->
+            <div class="lg:col-span-5">
+                <!-- Summary Card -->
+                <div class="bg-slate-900 rounded-2xl p-6 text-white mb-6 shadow-xl">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        Resumo do Depósito
+                    </h3>
+                    <div class="space-y-3 border-t border-slate-800 pt-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Valor solicitado:</span>
+                            <span id="summaryAmount" class="font-bold">R$ 100,00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Taxa de processamento:</span>
+                            <span class="text-emerald-400 font-bold">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Método:</span>
+                            <span class="font-bold">PIX (Instantâneo)</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 flex justify-between items-center">
+                            <span class="text-base font-bold">Total a pagar:</span>
+                            <span id="summaryTotal" class="text-2xl font-black text-sky-400">R$ 100,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Section (Hidden until generated) -->
+                <div id="resultSection" class="hidden deposit-card p-6 border-2 border-sky-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div class="text-center mb-6">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">PIX Gerado!</h3>
+                        <p class="text-sm text-slate-500">Escaneie ou copie o código abaixo.</p>
+                    </div>
+
+                    <div class="qr-container flex justify-center mb-6">
+                        <img id="qrCode" src="" alt="QR Code PIX" class="w-48 h-48 bg-white p-2 rounded-lg shadow-sm">
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="input-label text-[10px]">Código Copia e Cola</label>
+                            <div class="flex gap-2">
+                                <div class="flex-1 bg-slate-100 rounded-lg p-3 overflow-hidden">
+                                    <p id="pixKey" class="font-mono text-[10px] text-slate-600 break-all line-clamp-2"></p>
+                                </div>
+                                <button onclick="copyPixKey()" class="bg-slate-900 text-white px-4 rounded-lg text-xs font-bold hover:bg-slate-800 transition-colors">
+                                    COPIAR
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                            <h4 class="text-xs font-bold text-blue-900 uppercase mb-2 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                Instruções
+                            </h4>
+                            <ul class="text-[11px] text-blue-800 space-y-2 font-medium">
+                                <li class="flex gap-2"><span class="step-number h-4 w-4 text-[9px]">1</span> Acesse seu App de Banco</li>
+                                <li class="flex gap-2"><span class="step-number h-4 w-4 text-[9px]">2</span> Escolha Pagar via PIX</li>
+                                <li class="flex gap-2"><span class="step-number h-4 w-4 text-[9px]">3</span> Escaneie o QR Code ou Cole o Código</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Footer -->
+                <div class="mt-6 text-center">
+                    <p class="text-[10px] text-slate-400 font-medium uppercase tracking-widest flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+                        Ambiente 100% Seguro
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast bg-slate-900 text-white"></div>
 
     <script>
         const FUNCTION_URL = '/.netlify/functions/gerar-pix';
@@ -354,167 +381,74 @@
             }).format(value);
         }
 
-        function updateAmount() {
-            const amountInput = document.getElementById('amount');
-            const amount = parseFloat(amountInput.value) || 0;
-            const errorDiv = document.getElementById('amountError');
-            const errorMsg = document.getElementById('amountErrorMsg');
-
-            if (amountInput.value !== '' && amount <= 0) {
-                errorMsg.textContent = 'Por favor, insira um valor válido';
-                errorDiv.classList.remove('hidden');
-            } else {
-                errorDiv.classList.add('hidden');
-            }
-
-            document.getElementById('amountDisplay').textContent = formatCurrency(amount);
+        function updateDisplay() {
+            const val = parseFloat(document.getElementById('amount').value) || 0;
+            const formatted = formatCurrency(val);
+            document.getElementById('summaryAmount').textContent = formatted;
+            document.getElementById('summaryTotal').textContent = formatted;
         }
 
-        function showToast(message, type = 'success') {
-            // Remover toasts existentes
-            document.querySelectorAll('.toast').forEach(t => t.remove());
-
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => toast.remove(), 300);
-            }, 4000);
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 3000);
         }
 
         function copyPixKey() {
-            const pixKey = document.getElementById('pixKey').textContent;
-            if (!pixKey) return;
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(pixKey).then(() => {
-                    showToast('Código PIX copiado!', 'success');
-                }).catch(() => {
-                    fallbackCopy(pixKey);
-                });
-            } else {
-                fallbackCopy(pixKey);
-            }
-        }
-
-        function fallbackCopy(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast('Código PIX copiado!', 'success');
-            } catch (e) {
-                showToast('Não foi possível copiar. Copie manualmente.', 'error');
-            }
-            document.body.removeChild(textarea);
+            const key = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(key).then(() => {
+                showToast('Código copiado com sucesso!');
+            });
         }
 
         async function generatePix() {
-            const amountInput = document.getElementById('amount');
-            const amount = parseFloat(amountInput.value);
+            const amount = parseFloat(document.getElementById('amount').value);
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const whatsapp = document.getElementById('whatsapp').value.trim();
 
-            // Validações
-            if (!fullName) {
-                showToast('Por favor, insira seu nome completo', 'error');
-                return;
-            }
-            if (!email) {
-                showToast('Por favor, insira seu email', 'error');
-                return;
-            }
-            if (!whatsapp) {
-                showToast('Por favor, insira seu WhatsApp', 'error');
-                return;
-            }
-            if (!amount || amount <= 0) {
-                showToast('Por favor, insira um valor válido', 'error');
+            if (!fullName || !email || !whatsapp || isNaN(amount) || amount <= 0) {
+                showToast('Preencha todos os campos corretamente.');
                 return;
             }
 
-            // Esconder seção PIX anterior e mostrar loading
-            document.getElementById('pixSection').classList.add('hidden');
-            document.getElementById('loadingContainer').classList.remove('hidden');
-            document.getElementById('generateBtn').disabled = true;
+            const btn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loadingState');
+            const result = document.getElementById('resultSection');
+
+            btn.classList.add('hidden');
+            loading.classList.remove('hidden');
+            result.classList.add('hidden');
 
             try {
                 const response = await fetch(FUNCTION_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        amount: amount,
-                        fullName: fullName,
-                        whatsapp: whatsapp
-                    })
+                    body: JSON.stringify({ amount, fullName, whatsapp })
                 });
 
                 const data = await response.json();
-                console.log('API Response:', data);
 
-                if (data.success && (data.qrCode || data.copyPaste)) {
-                    // Exibir QR Code
-                    if (data.qrCode) {
-                        const qrImg = document.getElementById('qrCode');
-                        qrImg.src = data.qrCode;
-                        qrImg.onerror = function() {
-                            document.getElementById('qrCodeContainer').classList.add('hidden');
-                        };
-                        document.getElementById('qrCodeContainer').classList.remove('hidden');
-                    }
-
-                    // Exibir código copia e cola
-                    if (data.copyPaste) {
-                        document.getElementById('pixKey').textContent = data.copyPaste;
-                        document.getElementById('pixKeySection').classList.remove('hidden');
-                    }
-
-                    document.getElementById('pixSection').classList.remove('hidden');
-                    showToast('PIX gerado com sucesso!', 'success');
-
-                    // Scroll para a seção do PIX
-                    setTimeout(() => {
-                        document.getElementById('pixSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 300);
-
+                if (data.success) {
+                    document.getElementById('qrCode').src = data.qrCode;
+                    document.getElementById('pixKey').textContent = data.copyPaste;
+                    result.classList.remove('hidden');
+                    result.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    const errorMsg = data.error || data.message || 'Erro ao gerar PIX. Tente novamente.';
-                    showToast(errorMsg, 'error');
+                    showToast(data.error || 'Erro ao gerar pagamento.');
+                    btn.classList.remove('hidden');
                 }
-
-            } catch (error) {
-                console.error('Erro:', error);
-                showToast('Erro na conexão. Verifique sua internet e tente novamente.', 'error');
+            } catch (e) {
+                showToast('Erro de conexão. Tente novamente.');
+                btn.classList.remove('hidden');
             } finally {
-                document.getElementById('loadingContainer').classList.add('hidden');
-                document.getElementById('generateBtn').disabled = false;
+                loading.classList.add('hidden');
             }
         }
 
-        function resetForm() {
-            document.getElementById('amount').value = '100';
-            document.getElementById('fullName').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('whatsapp').value = '';
-            document.getElementById('pixSection').classList.add('hidden');
-            document.getElementById('qrCodeContainer').classList.add('hidden');
-            document.getElementById('pixKeySection').classList.add('hidden');
-            document.getElementById('amountError').classList.add('hidden');
-            updateAmount();
-        }
-
-        // Inicializar
-        updateAmount();
+        // Init
+        updateDisplay();
     </script>
 </body>
 </html>
