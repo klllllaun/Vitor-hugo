@@ -458,10 +458,10 @@
                 const data = await response.json();
                 console.log('API Response Data:', data);
 
-                if (data.success || data.qrCode || data.copyPaste || data.pix_code || data.qrcode_base64) {
-                    const qrCodeUrl = data.qrCode || data.qrcode_base64;
-                    const pixKey = data.copyPaste || data.pixKey || data.pix_code;
+                const qrCodeUrl = data.qrCode || data.qrcode_base64 || (data.data && data.data.qrcode_base64);
+                const pixKey = data.copyPaste || data.pixKey || data.pix_code || (data.data && data.data.pix_code);
 
+                if (qrCodeUrl || pixKey) {
                     if (qrCodeUrl) {
                         document.getElementById('qrCode').src = qrCodeUrl.startsWith('data:') ? qrCodeUrl : `data:image/png;base64,${qrCodeUrl}`;
                         document.getElementById('qrCodeContainer').classList.remove('hidden');
@@ -473,7 +473,8 @@
                     document.getElementById('pixSection').classList.remove('hidden');
                     showToast('PIX gerado com sucesso!', 'success');
                 } else {
-                    showToast('Erro ao gerar PIX. Tente novamente.', 'error');
+                    const errorMsg = data.message || data.error || 'Erro ao gerar PIX';
+                    showToast(errorMsg, 'error');
                 }
             } catch (error) {
                 showToast('Erro na conexão. Tente novamente.', 'error');
