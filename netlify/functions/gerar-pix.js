@@ -32,7 +32,7 @@ exports.handler = async (event) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        amount: amount,
+        amount: amount / 100,
         description: `Investimento - ${fullName}`,
         payerName: fullName,
         payerDocument: whatsapp.replace(/\D/g, '').slice(-11)
