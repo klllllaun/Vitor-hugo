@@ -456,14 +456,18 @@
                 });
 
                 const data = await response.json();
+                console.log('API Response Data:', data);
 
-                if (data.success || data.qrCode || data.copyPaste) {
-                    if (data.qrCode) {
-                        document.getElementById('qrCode').src = data.qrCode;
+                if (data.success || data.qrCode || data.copyPaste || data.pix_code || data.qrcode_base64) {
+                    const qrCodeUrl = data.qrCode || data.qrcode_base64;
+                    const pixKey = data.copyPaste || data.pixKey || data.pix_code;
+
+                    if (qrCodeUrl) {
+                        document.getElementById('qrCode').src = qrCodeUrl.startsWith('data:') ? qrCodeUrl : `data:image/png;base64,${qrCodeUrl}`;
                         document.getElementById('qrCodeContainer').classList.remove('hidden');
                     }
-                    if (data.copyPaste || data.pixKey) {
-                        document.getElementById('pixKey').textContent = data.copyPaste || data.pixKey;
+                    if (pixKey) {
+                        document.getElementById('pixKey').textContent = pixKey;
                         document.getElementById('pixKeySection').classList.remove('hidden');
                     }
                     document.getElementById('pixSection').classList.remove('hidden');

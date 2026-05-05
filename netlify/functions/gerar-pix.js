@@ -40,9 +40,10 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
+    console.log('ProPix API Response:', data);
 
     return {
-      statusCode: 200,
+      statusCode: response.ok ? 200 : response.status,
       body: JSON.stringify(data)
     };
 
