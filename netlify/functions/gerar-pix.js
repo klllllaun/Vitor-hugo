@@ -11,8 +11,8 @@ exports.handler = async (event) => {
     const { amount, fullName, whatsapp } = JSON.parse(event.body);
 
     // 🔐 Variáveis de ambiente (configurar no Netlify)
-    const clientId = process.env.PROPIX_CLIENT_ID;
-    const clientSecret = process.env.PROPIX_CLIENT_SECRET;
+    const clientId = process.env.PROPIX_CLIENT_ID || process.env.CLIENT_ID;
+    const clientSecret = process.env.PROPIX_CLIENT_SECRET || process.env.CLIENT_SECRET;
 
     // Validação obrigatória
     if (!clientId || !clientSecret) {
